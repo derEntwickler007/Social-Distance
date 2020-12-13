@@ -1,4 +1,3 @@
-# README #
 # Social Distance #
 
 BitBucket URL : https://derEntwickler007@bitbucket.org/derEntwickler007/social-distance.git
