@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.ujwal.socialDistance.entity.User;
 import com.ujwal.socialDistance.entity.UserFriendsRequestEntity;
+import com.ujwal.socialDistance.entity.UserRemoveEntity;
 import com.ujwal.socialDistance.repository.UserRepository;
 
 @Repository
@@ -25,8 +26,8 @@ public class UserDao {
 	}
 	public ResponseEntity<Map<String, Object>> addUserFriends(UserFriendsRequestEntity userFriendsRequestEntity) {
 		Map<String, Object> result = new HashMap<String, Object>();
-		Integer id1= userFriendsRequestEntity.getFriends().get(0);
-		Integer id2 = userFriendsRequestEntity.getFriends().get(1);
+		Integer id1= userFriendsRequestEntity.getUserId();
+		Integer id2 = userFriendsRequestEntity.getFriendId();
 		User user1=null;
 		User user2=null;
 		user1=repository.getById(id1);
@@ -60,20 +61,22 @@ public class UserDao {
 		result.put("count", friendList.size());
 		return new ResponseEntity<Map<String, Object>>(result, HttpStatus.OK);
 	}
-	public ResponseEntity<Map<String, Object>> removeUserFriend(UserFriendsRequestEntity userFriendsRequestEntity) {
+	public ResponseEntity<Map<String, Object>> removeUserFriend(UserRemoveEntity userRemoveEntity) {
 		Map<String, Object> result = new HashMap<String, Object>();
-		if (userFriendsRequestEntity == null) {
+		if (userRemoveEntity == null) {
 			result.put("Error : ", "Invalid request");
 			return new ResponseEntity<Map<String, Object>>(result, HttpStatus.BAD_REQUEST);
 		}
-		Integer id1= userFriendsRequestEntity.getFriends().get(0);
-		Integer id2 = userFriendsRequestEntity.getFriends().get(1);
+		Integer id1= userRemoveEntity.getUserId();
+		Integer id2 = userRemoveEntity.getFriendId();
 		User user1=null;
 		User user2=null;
 		user1=repository.getById(id1);
 		user2=repository.getById(id2);
 		user1.removeUserFriends(user2);
 		user2.removeUserFriends(user1);
+		repository.save(user1);
+		repository.save(user2);
 		result.put("success", true);
 		return new ResponseEntity<Map<String, Object>>(result, HttpStatus.OK);
 	}

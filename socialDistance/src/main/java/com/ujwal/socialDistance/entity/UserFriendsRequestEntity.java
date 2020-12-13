@@ -1,17 +1,21 @@
 package com.ujwal.socialDistance.entity;
 
-import java.util.List;
+public class UserFriendsRequestEntity{
 
-public class UserFriendsRequestEntity {
-
-	private List<Integer> friends;
-
-	public List<Integer> getFriends() {
-		return friends;
+	private Integer userId;
+	private Integer friendId;
+	
+	public Integer getUserId() {
+		return userId;
 	}
-
-	public void setFriends(List<Integer> friends) {
-		this.friends = friends;
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+	public Integer getFriendId() {
+		return friendId;
+	}
+	public void setFriendId(Integer friendId) {
+		this.friendId = friendId;
 	}
 
 }

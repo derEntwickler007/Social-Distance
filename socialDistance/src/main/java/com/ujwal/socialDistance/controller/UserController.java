@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ujwal.socialDistance.dao.UserDao;
 import com.ujwal.socialDistance.entity.User;
 import com.ujwal.socialDistance.entity.UserFriendsRequestEntity;
+import com.ujwal.socialDistance.entity.UserRemoveEntity;
 
 @RestController
 @RequestMapping("/user")
@@ -40,12 +41,7 @@ public class UserController {
 	}
 	
 	@PostMapping("/removeUserFriend")
-	public ResponseEntity<Map<String, Object>> removeUserFriend(@RequestBody UserFriendsRequestEntity userFriendsRequestEntity) {
-		return this.userDao.removeUserFriend(userFriendsRequestEntity);
+	public ResponseEntity<Map<String, Object>> removeUserFriend(@RequestBody UserRemoveEntity userRemoveEntity) {
+		return this.userDao.removeUserFriend(userRemoveEntity);
 	}
-//
-//	@PostMapping("/getCommonUserFriends")
-//	public ResponseEntity<Map<String, Object>> getCommonUserFriends(@RequestBody User userFriendsRequestEntity) {
-//		return this.userDao.getCommonUserFriends(userFriendsRequestEntity);
-//	}
 }
