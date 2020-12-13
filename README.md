@@ -1,30 +1,41 @@
 # README #
 # Social Distance #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+BitBucket URL : https://derEntwickler007@bitbucket.org/derEntwickler007/social-distance.git
 
-### What is this repository for? ###
+1.Request for Add New User:
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+                 Method: POST
+                 Postman URL: http://localhost:8080/user/save
+                 Request Body: 
+							{  
+								"firstName":"Ram",
+								"lastName":"Kshire",
+								"mobileNo":"8080756412",
+								"emailId":"ram@ujwal.com",
+								"city":"Dhule",
+								"friends":[]
+							}
+2.Request for Add New User Friend  :
 
-### How do I get set up? ###
+                  Method: POST
+                  Postman URL: http://localhost:8080/user/userFriendRequest
+                  Request Body: 
+                            {
+									"userId":1,
+									"friendId":3
+                            }
+3.Request for Get All Friends :
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+                  Method: Get
+                  Postman URL: http://localhost:8080/user/getUserFriendList?id=6
+                  Request Param: "id":6
+4.Request for Remove User Friend :
 
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+                  Method: POST
+                  Postman URL: http://localhost:8080/user/removeUserFriend
+                  Request Body: 
+                              {
+									"userId":1,
+									"friendId":3
+							   }
